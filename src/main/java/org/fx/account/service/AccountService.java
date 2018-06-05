@@ -15,5 +15,5 @@ public interface AccountService {
 
     ResponseResult<String> update(AccountModel model);
 
-    ResponseResult<AccountModel> findByModel(AccountModel model);
+    ResponseResult<String> findByModel(AccountModel model);
 }

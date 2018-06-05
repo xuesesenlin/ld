@@ -1,7 +1,6 @@
 package org.fx.api;
 
 import feign.Body;
-import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
 import org.fx.account.model.AccountModel;
@@ -15,8 +14,18 @@ import org.fx.utils.ResponseResult;
  */
 public interface AccountApiFeign {
 
-    @Headers({"Content-Type: application/json;charset=UTF-8"})
-    @RequestLine("POST /login/login")
-    @Body("model={model}")
-    ResponseResult<AccountModel> login(@Param("model") AccountModel model);
+    @RequestLine("POST /api/account/login")
+    @Body("json={json}")
+    ResponseResult<String> login(@Param("json") String json);
+
+    @RequestLine("GET /api/account/sj/code/{token}")
+    ResponseResult<AccountModel> sjCode(@Param("token") String token);
+
+    @RequestLine("POST /api/account/update")
+    @Body("pass={pass}&token={token}")
+    ResponseResult<String> updatePWD(@Param("pass") String pass, @Param("token") String token);
+
+    @RequestLine("POST /api/register/register")
+    @Body("json={json}")
+    ResponseResult<String> register(@Param("json") String json);
 }

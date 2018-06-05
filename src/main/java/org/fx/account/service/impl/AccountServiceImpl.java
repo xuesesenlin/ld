@@ -32,7 +32,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public ResponseResult<AccountModel> findByModel(AccountModel model) {
-        return accountApiFeign.login(model);
+    public ResponseResult<String> findByModel(AccountModel model) {
+//        return accountApiFeign.login(model.getAccount());
+        return null;
     }
 }

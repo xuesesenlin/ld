@@ -1,9 +1,10 @@
 package org.fx.index.view;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import org.fx.utils.HtmlUtils;
 
 import static javafx.stage.StageStyle.TRANSPARENT;
 
@@ -16,7 +17,12 @@ import static javafx.stage.StageStyle.TRANSPARENT;
 public class IndexView {
 
     public void index(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/index/fxml/index.fxml"));
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+//        加载静态页面
+        webEngine.load(new HtmlUtils().getHtml("/index/html/index.html"));
+//        加载js文件
+//        webEngine.executeScript(new HtmlUtils().getHtml("/public/js/jquery-3.3.1.min.js"));
         //设置窗口的图标.
 //        primaryStage.getIcons().add(new Image(getClass().getResource("/image/ico.jpg").toExternalForm()));
 //        禁止窗口缩放
@@ -34,14 +40,10 @@ public class IndexView {
 //        stage.setAlwaysOnTop(true);
 //        设置操作系统修饰的title
 //        primaryStage.setTitle("后台管理");
-        Scene scene = new Scene(root);
-//        加载外部css
-//        scene.getStylesheets().add(getClass().getResource("/index/css/index.css").toExternalForm());
+        Scene scene = new Scene(webView);
+//        scene.getStylesheets().add(getClass().getResource("/static/bootstrap-4.0.0-dist/css/bootstrap.min.css").toExternalForm());
         primaryStage.setScene(scene);
 //        显示
         primaryStage.show();
-//        欢迎语
-//        MP3Util mp3Util = new MP3Util();
-//        mp3Util.mp3("/mp3/welcome.mp3");
     }
 }

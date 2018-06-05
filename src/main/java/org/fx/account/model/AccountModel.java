@@ -13,17 +13,23 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AccountModel implements Serializable {
 
-    private String account;
-    private String password;
-    private String types;
-    private String flag;
+    private String username;
 
-    public String getAccount() {
-        return account;
+    private String password;
+
+    private String yzm;
+
+    private int types;
+
+    //商家编码
+    private String coding;
+
+    public String getUsername() {
+        return username;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -34,51 +40,50 @@ public class AccountModel implements Serializable {
         this.password = password;
     }
 
-    public String getTypes() {
+    public String getYzm() {
+        return yzm;
+    }
+
+    public void setYzm(String yzm) {
+        this.yzm = yzm;
+    }
+
+    public int getTypes() {
         return types;
     }
 
-    public void setTypes(String types) {
+    public void setTypes(int types) {
         this.types = types;
     }
 
-    public String getFlag() {
-        return flag;
+    public String getCoding() {
+        return coding;
     }
 
-    public void setFlag(String flag) {
-        this.flag = flag;
+    public void setCoding(String coding) {
+        this.coding = coding;
     }
 
     public AccountModel() {
         super();
     }
 
-    public AccountModel(String account, String password) {
-        this.account = account;
+    public AccountModel(String username, String password, String yzm, int types, String coding) {
+        this.username = username;
         this.password = password;
-    }
-
-    public AccountModel(String account, String password, String types) {
-        this.account = account;
-        this.password = password;
+        this.yzm = yzm;
         this.types = types;
-    }
-
-    public AccountModel(String account, String password, String types, String flag) {
-        this.account = account;
-        this.password = password;
-        this.types = types;
-        this.flag = flag;
+        this.coding = coding;
     }
 
     @Override
     public String toString() {
         return "AccountModel{" +
-                "account='" + account + '\'' +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", types='" + types + '\'' +
-                ", flag='" + flag + '\'' +
+                ", yzm='" + yzm + '\'' +
+                ", types=" + types +
+                ", coding='" + coding + '\'' +
                 '}';
     }
 }
