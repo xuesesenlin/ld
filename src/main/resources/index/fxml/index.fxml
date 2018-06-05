@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.fx.index.action.IndexAction">
+    <children>
+        <Pane layoutX="-1.0" prefHeight="400.0" prefWidth="600.0" styleClass="login_pane">
+            <children>
+                <VBox layoutX="2.0" layoutY="-2.0" prefHeight="400.0" prefWidth="600.0">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="232.0" prefWidth="600.0"/>
+                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="600.0">
+                            <children>
+                                <Label text="账户:"/>
+                                <TextField fx:id="login_account_textField" prefHeight="23.0" prefWidth="220.0"/>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="600.0">
+                            <children>
+                                <Label text="密码:"/>
+                                <PasswordField fx:id="login_password_passwordField" prefHeight="23.0"
+                                               prefWidth="220.0"/>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="26.0" prefWidth="600.0">
+                            <children>
+                                <Label fx:id="login_error_label" prefHeight="26.0" prefWidth="598.0"/>
+                            </children>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="27.0" prefWidth="600.0">
+                            <children>
+                                <Button onAction="#forgetThePassword" mnemonicParsing="false" styleClass="button1"
+                                        text="忘记密码" textFill="#6163ff">
+                                    <HBox.margin>
+                                        <Insets right="10.0"/>
+                                    </HBox.margin>
+                                </Button>
+                                <Button onAction="#register" mnemonicParsing="false" prefHeight="23.0" prefWidth="51.0"
+                                        styleClass="button1"
+                                        text="注册">
+                                    <HBox.margin>
+                                        <Insets right="10.0"/>
+                                    </HBox.margin>
+                                </Button>
+                                <Button onAction="#reset" mnemonicParsing="false" prefHeight="23.0" prefWidth="58.0"
+                                        styleClass="button1"
+                                        text="重置">
+                                    <HBox.margin>
+                                        <Insets right="10.0"/>
+                                    </HBox.margin>
+                                </Button>
+                                <Button onAction="#login" mnemonicParsing="false" prefHeight="23.0" prefWidth="69.0"
+                                        styleClass="button1"
+                                        text="登录">
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </Pane>
+        <HBox prefHeight="26.0" prefWidth="600.0">
+            <children>
+                <Label onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="26.0" prefWidth="581.0" text="xx系统"/>
+                <Label onMouseClicked="#close" prefHeight="20.0" prefWidth="20.0" styleClass="login_close_img"/>
+            </children>
+        </HBox>
+    </children>
+    <stylesheets>
+        <URL value="@../css/index.css"/>
+    </stylesheets>
+</AnchorPane>

@@ -1,0 +1,12 @@
+.login_close_img{
+    -fx-background-image: url("../img/login_close_img.jpg") no-repeat left center;
+    -fx-background-size:cover;
+}
+.login_pane{
+    -fx-background-image: url("../img/login_background.png") no-repeat left center;
+    -fx-background-size:cover;
+}
+.button1{
+    -fx-background-image: url("../img/button.jpg") no-repeat left center;
+    -fx-background-size:cover;
+}
