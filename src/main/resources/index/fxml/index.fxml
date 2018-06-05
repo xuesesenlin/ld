@@ -67,7 +67,8 @@
         </Pane>
         <HBox prefHeight="26.0" prefWidth="600.0">
             <children>
-                <Label onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="26.0" prefWidth="581.0" text="xx系统"/>
+                <Label onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="26.0" prefWidth="581.0"
+                       text="xx系统"/>
                 <Label onMouseClicked="#close" prefHeight="20.0" prefWidth="20.0" styleClass="login_close_img"/>
             </children>
         </HBox>

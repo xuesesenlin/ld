@@ -1,8 +1,12 @@
 package org.fx.account.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fx.account.model.AccountModel;
 import org.fx.account.service.AccountService;
+import org.fx.api.AccountApiFeign;
 import org.fx.utils.ResponseResult;
+import org.fx.utils.feignUtils.FeignRequest;
+import org.fx.utils.feignUtils.FeignUtil;
 
 /**
  * @author ld
@@ -11,6 +15,11 @@ import org.fx.utils.ResponseResult;
  * @remarks
  */
 public class AccountServiceImpl implements AccountService {
+
+    private AccountApiFeign accountApiFeign = FeignUtil.feign()
+            .target(AccountApiFeign.class, new FeignRequest().URL());
+
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public ResponseResult<String> save(AccountModel model) {
@@ -23,10 +32,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public ResponseResult<String> findByAccount(String account) {
-        if (account.equals("1"))
-            return new ResponseResult<>(true, "成功");
-        else
-            return new ResponseResult<>();
+    public ResponseResult<AccountModel> findByModel(AccountModel model) {
+        return accountApiFeign.login(model);
     }
 }

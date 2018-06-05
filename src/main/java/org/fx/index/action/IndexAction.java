@@ -11,8 +11,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.fx.account.model.AccountModel;
 import org.fx.account.service.AccountService;
 import org.fx.account.service.impl.AccountServiceImpl;
+import org.fx.home.view.HomeView;
 import org.fx.utils.AlertUtil;
 import org.fx.utils.ResponseResult;
 
@@ -72,11 +74,18 @@ public class IndexAction {
                 protected Void call() throws Exception {
                     Platform.runLater(() -> {
                         try {
-                            ResponseResult<String> result = accountService.findByAccount(account);
-                            if (result.isSuccess())
-                                login_error_label.setText("跳转");
-                            else
-                                login_error_label.setText("账户或密码错误");
+                            AccountModel model = new AccountModel();
+                            model.setAccount(account);
+                            model.setPassword(password);
+                            ResponseResult<AccountModel> result = accountService.findByModel(model);
+                            if (result.isSuccess()) {
+                                try {
+                                    new HomeView().index();
+                                } catch (Exception e) {
+                                    login_error_label.setText("跳转失败");
+                                }
+                            } else
+                                login_error_label.setText(result.getMessage());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -86,25 +95,6 @@ public class IndexAction {
             };
             new Thread(task).start();
         }
-//        login_error_label.setText(null);
-//        String account = login_account_textField.getText();
-//        String password = login_password_passwordField.getText();
-//        if (account == null || account.trim().equals(""))
-//            login_error_label.setText("账号不能为空");
-//        else if (password == null || password.trim().equals(""))
-//            login_error_label.setText("密码不能为空");
-//        else {
-//            try {
-//                ResponseResult<String> result = accountService.findByAccount(account);
-//                if (result.isSuccess())
-//                    login_error_label.setText("跳转");
-//                else
-//                    login_error_label.setText("账号或密码错误");
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                login_error_label.setText("远程服务器请求错误");
-//            }
-//        }
     }
 
     //    关闭
@@ -119,6 +109,7 @@ public class IndexAction {
         }
     }
 
+    //拖动窗口
     @FXML
     private void dragged(MouseEvent m) {
         //获取当前窗口的坐标
@@ -131,6 +122,7 @@ public class IndexAction {
         stage.setY(y_stage + m.getY() - y1);
     }
 
+    //拖动窗口
     @FXML
     private void pressed(MouseEvent m) {
         //按下鼠标后，记录当前鼠标的坐标
